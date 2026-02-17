@@ -275,9 +275,8 @@
 // ===== Email (built via JS to avoid Cloudflare obfuscation) =====
 (function(){
     var u='inndiaass6',d='gmail.com',e=u+'@'+d,m='mai'+'lto:'+e;
-    document.getElementById('heroEmail').href=m;
-    var ae=document.getElementById('aboutEmail');ae.href=m;ae.textContent=e;
-    var ce=document.getElementById('contactEmail');ce.href=m;ce.querySelector('span').textContent=e;
+    var ae=document.getElementById('aboutEmail');if(ae){ae.href=m;ae.textContent=e;}
+    var ce=document.getElementById('contactEmail');if(ce){ce.href=m;ce.querySelector('span').textContent=e;}
 })();
 
 // ===== Tech Background =====
