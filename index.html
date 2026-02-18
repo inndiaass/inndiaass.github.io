@@ -33,7 +33,7 @@
         a{text-decoration:none;color:inherit;transition:all .3s}
         #bgCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-        /* --- NAVBAR --- */
+        /* --- NAVBAR MEJORADA (Se oculta al bajar) --- */
         .nav-c{
             position:fixed;top:0;left:0;right:0;z-index:1000;
             padding:1rem 2rem;
@@ -66,12 +66,12 @@
             display:flex;align-items:center;justify-content:center;
             font-size:1.1rem;
             transition:all .3s;
-            pointer-events: auto;
+            pointer-events: auto; /* Permite clickear el botón aunque la nav sea invisible */
             box-shadow: var(--shd);
         }
         .t-tog:hover{border-color:var(--ac);transform:rotate(30deg);box-shadow:0 0 15px var(--glow)}
 
-        /* --- BOTÓN SCROLL TOP (ESTILO IMAGEN) --- */
+        /* --- BOTÓN SCROLL TOP (ESTILO PROGRESO CIRCULAR) --- */
         .st-btn {
             position: fixed;
             bottom: 30px;
@@ -92,19 +92,10 @@
             box-shadow: var(--shd);
             border: 1px solid var(--brd);
         }
-        .st-btn.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .st-btn i {
-            color: var(--ac2);
-            font-size: 1.1rem;
-            transition: transform 0.3s;
-        }
+        .st-btn.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .st-btn i { color: var(--ac2); font-size: 1.1rem; transition: transform 0.3s; }
         .st-btn:hover i { transform: translateY(-3px); }
         
-        /* Círculo de progreso SVG */
         .st-progress {
             position: absolute;
             top: -2px; left: -2px;
@@ -116,13 +107,13 @@
             fill: none;
             stroke: var(--ac2);
             stroke-width: 3;
-            stroke-dasharray: 151; /* Circunferencia aproximada */
+            stroke-dasharray: 151; 
             stroke-dashoffset: 151;
             stroke-linecap: round;
             transition: stroke-dashoffset 0.1s linear;
         }
 
-        /* --- SECCIONES (IGUAL QUE ANTES) --- */
+        /* --- RESTO DE ESTILOS --- */
         .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:120px 2rem 60px;z-index:1}
         .hero-c{text-align:center;position:relative;z-index:1}
         .hero-t{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;margin-bottom:.5rem;background:linear-gradient(135deg,var(--t1),var(--ac2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fu 1s ease .2s both}
@@ -133,15 +124,16 @@
         .btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--glow);color:#fff}
         .btn-o{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.8rem;background:transparent;color:var(--t1);border:2px solid var(--brd2);border-radius:50px;font-weight:600;font-size:.95rem;transition:all .3s}
         .btn-o:hover{border-color:var(--ac);color:var(--ac2);transform:translateY(-2px)}
-        
+        .scroll-i{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--t3);font-size:.8rem;animation:bo 2s infinite}
+        @keyframes bo{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
+
         .sec{padding:100px 2rem;position:relative;z-index:1;transition:background .4s}
         .sec:nth-child(even){background:var(--bg2)}
         .ctr{max-width:1100px;margin:0 auto}
         .sh{text-align:center;margin-bottom:4rem}
         .stag{display:inline-block;padding:.4rem 1rem;background:rgba(108,92,231,.1);border:1px solid rgba(108,92,231,.2);border-radius:50px;color:var(--ac2);font-size:.85rem;font-weight:500;margin-bottom:1rem}
         .stit{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;color:var(--t1)}
-        
-        /* ... Estilos de experiencia, estudios y habilidades omitidos por brevedad pero incluidos en el bloque final ... */
+
         .ab-c{display:grid;grid-template-columns:2fr 1fr;gap:3rem;align-items:start}
         .ab-c p{font-size:1.05rem;color:var(--t2);line-height:1.9}
         .ab-d{display:flex;flex-direction:column;gap:1.2rem}
@@ -183,7 +175,7 @@
         .skills-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
         .skill-box{background:var(--card);border:1px solid var(--brd);border-radius:12px;padding:1.8rem;transition:all .3s}
         .skill-box:hover{border-color:var(--ac);box-shadow:var(--shd)}
-        .skill-box-title{color:var(--ac2);font-size:.95rem;font-weight:600;margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem;text-transform:uppercase;letter-spacing:1px}
+        .skill-box-title{color:var(--ac2);font-size:.95rem;font-weight:600;margin-bottom:12rem;display:flex;align-items:center;gap:.5rem;text-transform:uppercase;letter-spacing:1px}
         .skill-items{display:flex;flex-wrap:wrap;gap:1rem}
         .skill-item{display:flex;align-items:center;gap:.5rem;color:var(--t2);font-size:.9rem;font-weight:500}
         .skill-item img{width:32px;height:32px}
@@ -237,6 +229,7 @@
             <span class="btn-o" style="cursor:default"><i class="fas fa-map-marker-alt"></i> Madrid, España</span>
         </div>
     </div>
+    <a href="#sobre-mi" class="scroll-i"><span>Scroll</span><i class="fas fa-chevron-down"></i></a>
 </section>
 
 <section class="sec" id="sobre-mi">
@@ -279,6 +272,10 @@
                 <div class="ei"><i class="fas fa-graduation-cap"></i></div>
                 <div><div class="edt">2024 - Presente</div><h3 class="etit">CFGS: Desarrollo de Aplicaciones Multiplataforma</h3><h4 class="einst">IES Luis Vives</h4></div>
             </div>
+            <div class="ec">
+                <div class="ei"><i class="fas fa-graduation-cap"></i></div>
+                <div><div class="edt">2022 - 2024</div><h3 class="etit">Bachillerato</h3><h4 class="einst">IES San Nicasio</h4></div>
+            </div>
         </div>
     </div>
 </section>
@@ -291,9 +288,36 @@
                 <div class="tm-dot"></div>
                 <div class="tc">
                     <h3 class="tt">Practica Mapas</h3>
-                    <p class="tds">Aplicación en Kotlin con animaciones y geolocalización.</p>
+                    <p class="tds">Aplicación con logo animado y geolocalización.</p>
                     <div class="ptags"><span class="tag">Kotlin</span></div>
-                    <a href="https://github.com/inndiaass/PMDM-Mapas.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>GitHub</span></a>
+                    <a href="https://github.com/inndiaass/PMDM-Mapas.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
+                </div>
+            </div>
+            <div class="ti tr">
+                <div class="tm-dot"></div>
+                <div class="tc">
+                    <h3 class="tt">Estacionamiento Inteligente</h3>
+                    <p class="tds">Simulación de estacionamiento en Java.</p>
+                    <div class="ptags"><span class="tag">Java</span></div>
+                    <a href="https://github.com/inndiaass/Psp-estacionamiento-inteligente.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
+                </div>
+            </div>
+            <div class="ti">
+                <div class="tm-dot"></div>
+                <div class="tc">
+                    <h3 class="tt">Portfolio</h3>
+                    <p class="tds">Portfolio hecho con Spring Boot.</p>
+                    <div class="ptags"><span class="tag">Java</span></div>
+                    <a href="https://github.com/inndiaass/PracticaSpring2.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
+                </div>
+            </div>
+            <div class="ti tr">
+                <div class="tm-dot"></div>
+                <div class="tc">
+                    <h3 class="tt">API Empleados</h3>
+                    <p class="tds">API REST con Python y FastAPI.</p>
+                    <div class="ptags"><span class="tag">Python</span><span class="tag">FastAPI</span></div>
+                    <a href="https://github.com/inndiaass/ApiPractica.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
                 </div>
             </div>
         </div>
@@ -309,6 +333,25 @@
                 <div class="skill-items">
                     <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"> Java</span>
                     <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"> Python</span>
+                    <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#"> C#</span>
+                    <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" alt="Kotlin"> Kotlin</span>
+                    <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL"> SQL</span>
+                </div>
+            </div>
+            <div class="skill-box">
+                <h3 class="skill-box-title"><i class="fas fa-layer-group"></i> Frameworks</h3>
+                <div class="skill-items">
+                    <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring"> Spring Boot</span>
+                    <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" alt=".NET"> .NET</span>
+                    <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hibernate/hibernate-original.svg" alt="Hibernate"> Hibernate</span>
+                </div>
+            </div>
+            <div class="skill-box">
+                <h3 class="skill-box-title"><i class="fas fa-wrench"></i> Herramientas</h3>
+                <div class="skill-items">
+                    <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"> Git / GitHub</span>
+                    <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"> Docker</span>
+                    <span class="tag"><i class="fas fa-chart-bar"></i> PowerBI</span>
                 </div>
             </div>
         </div>
@@ -329,14 +372,16 @@
 <footer class="ft"><p>&copy; 2026 Iván Indias Martín. Todos los derechos reservados.</p></footer>
 
 <script>
-// ===== Email JS =====
+// ===== Email =====
 (function(){
     var u='inndiaass6',d='gmail.com',e=u+'@'+d,m='mai'+'lto:'+e;
-    var ae=document.getElementById('aboutEmail');if(ae){ae.href=m;ae.textContent=e;}
-    var ce=document.getElementById('contactEmail');if(ce){ce.href=m;ce.querySelector('span').textContent=e;}
+    document.getElementById('aboutEmail').href=m;
+    document.getElementById('aboutEmail').textContent=e;
+    document.getElementById('contactEmail').href=m;
+    document.getElementById('contactEmail').querySelector('span').textContent=e;
 })();
 
-// ===== Tech Background (Canvas) =====
+// ===== Canvas Background =====
 (function(){
     var c=document.getElementById('bgCanvas'),x=c.getContext('2d');
     var w,h,pts=[],N=50,maxD=140;
@@ -358,30 +403,29 @@
     draw();
 })();
 
-// ===== Lógica de Scroll (Navbar y Botón Progreso) =====
+// ===== Scroll logic (Navbar & Progress Button) =====
 window.addEventListener('scroll', function() {
     var nav = document.getElementById('navbar');
     var stBtn = document.getElementById('scrollTopBtn');
     var circle = document.querySelector('.st-progress circle');
     
-    // Navbar visible/invisible
+    // Navbar visibility
     nav.classList.toggle('scrolled', window.scrollY > 50);
 
-    // Botón Scroll Top
+    // Progress Button visibility
     if (window.scrollY > 100) {
         stBtn.classList.add('active');
     } else {
         stBtn.classList.remove('active');
     }
 
-    // Cálculo del progreso
+    // Progress calculation
     var totalHeight = document.body.scrollHeight - window.innerHeight;
     var progress = window.scrollY / totalHeight;
     var dashoffset = 151 - (progress * 151);
     circle.style.strokeDashoffset = dashoffset;
 });
 
-// Click para subir
 document.getElementById('scrollTopBtn').addEventListener('click', function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
@@ -394,13 +438,13 @@ document.getElementById('themeToggle').addEventListener('click',function(){
     ico.classList.toggle('fa-moon');
 });
 
-// ===== Scroll reveal =====
+// ===== Reveal animations =====
 var obs=new IntersectionObserver(function(entries){
     entries.forEach(function(e){if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}});
-},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+},{threshold:0.1});
 document.querySelectorAll('.ti,.ec,.sc,.di,.cm').forEach(function(el){
     el.style.opacity='0';el.style.transform='translateY(30px)';
-    el.style.transition='all .6s cubic-bezier(.4,0,.2,1)';obs.observe(el);
+    el.style.transition='all .6s ease-out';obs.observe(el);
 });
 </script>
 </body>
