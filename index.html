@@ -33,12 +33,53 @@
         a{text-decoration:none;color:inherit;transition:all .3s}
         #bgCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-        .nav-c{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 2rem;background:var(--nav);backdrop-filter:blur(20px);border-bottom:1px solid var(--brd);transition:all .3s}
-        .nav-c.scrolled{padding:.6rem 2rem;background:var(--nav2)}
+        /* --- MODIFICACIÓN NAVBAR --- */
+        .nav-c{
+            position:fixed;top:0;left:0;right:0;z-index:1000;
+            padding:1rem 2rem;
+            background:var(--nav);
+            backdrop-filter:blur(20px);
+            border-bottom:1px solid var(--brd);
+            transition: all .4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Cuando se hace scroll: fondo transparente y sin bordes */
+        .nav-c.scrolled {
+            background: transparent;
+            border-bottom: 1px solid transparent;
+            backdrop-filter: blur(0px);
+            pointer-events: none; /* Permite clickear lo que haya debajo de la barra invisible */
+        }
+
         .nav-i{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-        .nav-b{font-size:1.3rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-        .t-tog{background:var(--card);border:1px solid var(--brd2);color:var(--t1);width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .3s}
+        
+        /* El nombre desaparece al scrollear */
+        .nav-b{
+            font-size:1.3rem;font-weight:700;
+            background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+            transition: opacity .3s, transform .3s;
+        }
+        .nav-c.scrolled .nav-b {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        /* El botón se mantiene siempre visible y clickeable */
+        .t-tog{
+            background:var(--card);
+            border:1px solid var(--brd2);
+            color:var(--t1);
+            width:44px;height:44px;
+            border-radius:50%;
+            cursor:pointer;
+            display:flex;align-items:center;justify-content:center;
+            font-size:1.1rem;
+            transition:all .3s;
+            pointer-events: auto; /* Reactiva los clicks solo en el botón */
+            box-shadow: var(--shd);
+        }
         .t-tog:hover{border-color:var(--ac);transform:rotate(30deg);box-shadow:0 0 15px var(--glow)}
+        /* --------------------------- */
 
         .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:120px 2rem 60px;z-index:1}
         .hero-c{text-align:center;position:relative;z-index:1}
