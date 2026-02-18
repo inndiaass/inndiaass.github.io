@@ -106,6 +106,11 @@
         .pgl{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;padding:.5rem 1rem;background:rgba(255,255,255,.05);border:1px solid var(--brd2);border-radius:50px;font-size:.85rem;color:var(--t2);transition:all .3s}
         .pgl:hover{background:rgba(108,92,231,.1);border-color:var(--ac);color:var(--ac2)}
 
+        .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+        .proj-card{background:var(--card);border:1px solid var(--brd);border-radius:12px;padding:1.5rem;transition:all .3s;display:flex;flex-direction:column}
+        .proj-card:hover{border-color:var(--ac);transform:translateY(-3px);box-shadow:var(--shd)}
+        .proj-card .tds{flex:1}
+
         .skills-container{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
         .skill-box{background:var(--card);border:1px solid var(--brd);border-radius:12px;padding:1.8rem;transition:all .3s}
         .skill-box:hover{border-color:var(--ac);box-shadow:var(--shd)}
@@ -129,6 +134,7 @@
             .tc{max-width:100%}
             .hero-t{font-size:2rem}
             .skills-container{grid-template-columns:1fr}
+            .proj-grid{grid-template-columns:1fr}
         }
     </style>
 </head>
@@ -181,15 +187,10 @@
 <section class="sec" id="experiencia">
     <div class="ctr">
         <div class="sh"><span class="stag">Trayectoria</span><h2 class="stit">Experiencia Laboral</h2></div>
-        <div class="tl">
-            <div class="ti">
-                <div class="tm-dot"></div>
-                <div class="tc">
-                    <div class="td">Ene 2025 - Presente</div>
-                    <h3 class="tt">Prácticas</h3>
-                    <h4 class="ts">CTIF Madrid-Oeste</h4>
-                    <p class="tds">Prácticas en el CTIF Madrid-Oeste.</p>
-                </div>
+        <div class="eg">
+            <div class="ec">
+                <div class="ei"><i class="fas fa-briefcase"></i></div>
+                <div><div class="edt">Ene 2025 - Presente</div><h3 class="etit">Prácticas</h3><h4 class="einst">CTIF Madrid-Oeste</h4><p style="font-size:.9rem;color:var(--t3);margin-top:.3rem">Prácticas en el CTIF Madrid-Oeste.</p></div>
             </div>
         </div>
     </div>
@@ -214,42 +215,30 @@
 <section class="sec" id="proyectos">
     <div class="ctr">
         <div class="sh"><span class="stag">Portfolio</span><h2 class="stit">Proyectos</h2></div>
-        <div class="tl">
-            <div class="ti">
-                <div class="tm-dot"></div>
-                <div class="tc">
-                    <h3 class="tt">Practica Mapas</h3>
-                    <p class="tds">Aplicación con logo animado y geolocalización.</p>
-                    <div class="ptags"><span class="tag">Kotlin</span></div>
-                    <a href="https://github.com/inndiaass/PMDM-Mapas.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
-                </div>
+        <div class="proj-grid">
+            <div class="proj-card">
+                <h3 class="tt">Practica Mapas</h3>
+                <p class="tds">Aplicación con logo animado y geolocalización.</p>
+                <div class="ptags"><span class="tag">Kotlin</span></div>
+                <a href="https://github.com/inndiaass/PMDM-Mapas.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
             </div>
-            <div class="ti tr">
-                <div class="tm-dot"></div>
-                <div class="tc">
-                    <h3 class="tt">Estacionamiento Inteligente</h3>
-                    <p class="tds">Simulación de estacionamiento en Java.</p>
-                    <div class="ptags"><span class="tag">Java</span></div>
-                    <a href="https://github.com/inndiaass/Psp-estacionamiento-inteligente.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
-                </div>
+            <div class="proj-card">
+                <h3 class="tt">Estacionamiento Inteligente</h3>
+                <p class="tds">Simulación de estacionamiento en Java.</p>
+                <div class="ptags"><span class="tag">Java</span></div>
+                <a href="https://github.com/inndiaass/Psp-estacionamiento-inteligente.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
             </div>
-            <div class="ti">
-                <div class="tm-dot"></div>
-                <div class="tc">
-                    <h3 class="tt">Portfolio</h3>
-                    <p class="tds">Portfolio hecho con Spring Boot.</p>
-                    <div class="ptags"><span class="tag">Java</span></div>
-                    <a href="https://github.com/inndiaass/PracticaSpring2.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
-                </div>
+            <div class="proj-card">
+                <h3 class="tt">Portfolio</h3>
+                <p class="tds">Portfolio hecho con Spring Boot.</p>
+                <div class="ptags"><span class="tag">Java</span></div>
+                <a href="https://github.com/inndiaass/PracticaSpring2.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
             </div>
-            <div class="ti tr">
-                <div class="tm-dot"></div>
-                <div class="tc">
-                    <h3 class="tt">API Empleados</h3>
-                    <p class="tds">API REST con Python y FastAPI.</p>
-                    <div class="ptags"><span class="tag">Python</span><span class="tag">FastAPI</span></div>
-                    <a href="https://github.com/inndiaass/ApiPractica.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
-                </div>
+            <div class="proj-card">
+                <h3 class="tt">API Empleados</h3>
+                <p class="tds">API REST con Python y FastAPI.</p>
+                <div class="ptags"><span class="tag">Python</span><span class="tag">FastAPI</span></div>
+                <a href="https://github.com/inndiaass/ApiPractica.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
             </div>
         </div>
     </div>
@@ -295,17 +284,6 @@
                     <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"> Docker</span>
                     <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS"> AWS</span>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="sec" id="contacto">
-    <div class="ctr">
-        <div class="sh"><span class="stag">Hablemos</span><h2 class="stit">Contacto</h2></div>
-        <div class="cc">
-            <div class="cms">
-                <a id="contactEmail" href="#" class="cm"><i class="fas fa-envelope"></i><span>cargando...</span></a>
             </div>
         </div>
     </div>
@@ -368,7 +346,7 @@ document.getElementById('themeToggle').addEventListener('click',function(){
 var obs=new IntersectionObserver(function(entries){
     entries.forEach(function(e){if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}});
 },{threshold:0.1});
-document.querySelectorAll('.ti,.ec,.skill-box,.di,.cm').forEach(function(el){
+document.querySelectorAll('.proj-card,.ec,.skill-box,.di,.cm').forEach(function(el){
     el.style.opacity='0';el.style.transform='translateY(30px)';
     el.style.transition='all .6s ease-out';obs.observe(el);
 });
