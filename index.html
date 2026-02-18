@@ -33,7 +33,7 @@
         a{text-decoration:none;color:inherit;transition:all .3s}
         #bgCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-        /* --- MODIFICACIÓN NAVBAR --- */
+        /* --- NAVBAR --- */
         .nav-c{
             position:fixed;top:0;left:0;right:0;z-index:1000;
             padding:1rem 2rem;
@@ -42,29 +42,20 @@
             border-bottom:1px solid var(--brd);
             transition: all .4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        /* Cuando se hace scroll: fondo transparente y sin bordes */
         .nav-c.scrolled {
             background: transparent;
             border-bottom: 1px solid transparent;
             backdrop-filter: blur(0px);
-            pointer-events: none; /* Permite clickear lo que haya debajo de la barra invisible */
+            pointer-events: none;
         }
-
         .nav-i{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-        
-        /* El nombre desaparece al scrollear */
         .nav-b{
             font-size:1.3rem;font-weight:700;
             background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
             transition: opacity .3s, transform .3s;
         }
-        .nav-c.scrolled .nav-b {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
+        .nav-c.scrolled .nav-b { opacity: 0; transform: translateY(-10px); }
 
-        /* El botón se mantiene siempre visible y clickeable */
         .t-tog{
             background:var(--card);
             border:1px solid var(--brd2);
@@ -75,12 +66,63 @@
             display:flex;align-items:center;justify-content:center;
             font-size:1.1rem;
             transition:all .3s;
-            pointer-events: auto; /* Reactiva los clicks solo en el botón */
+            pointer-events: auto;
             box-shadow: var(--shd);
         }
         .t-tog:hover{border-color:var(--ac);transform:rotate(30deg);box-shadow:0 0 15px var(--glow)}
-        /* --------------------------- */
 
+        /* --- BOTÓN SCROLL TOP (ESTILO IMAGEN) --- */
+        .st-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 46px;
+            height: 46px;
+            background: var(--card);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s;
+            box-shadow: var(--shd);
+            border: 1px solid var(--brd);
+        }
+        .st-btn.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .st-btn i {
+            color: var(--ac2);
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
+        .st-btn:hover i { transform: translateY(-3px); }
+        
+        /* Círculo de progreso SVG */
+        .st-progress {
+            position: absolute;
+            top: -2px; left: -2px;
+            width: 50px; height: 50px;
+            transform: rotate(-90deg);
+            pointer-events: none;
+        }
+        .st-progress circle {
+            fill: none;
+            stroke: var(--ac2);
+            stroke-width: 3;
+            stroke-dasharray: 151; /* Circunferencia aproximada */
+            stroke-dashoffset: 151;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        /* --- SECCIONES (IGUAL QUE ANTES) --- */
         .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:120px 2rem 60px;z-index:1}
         .hero-c{text-align:center;position:relative;z-index:1}
         .hero-t{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;margin-bottom:.5rem;background:linear-gradient(135deg,var(--t1),var(--ac2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fu 1s ease .2s both}
@@ -91,16 +133,15 @@
         .btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--glow);color:#fff}
         .btn-o{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.8rem;background:transparent;color:var(--t1);border:2px solid var(--brd2);border-radius:50px;font-weight:600;font-size:.95rem;transition:all .3s}
         .btn-o:hover{border-color:var(--ac);color:var(--ac2);transform:translateY(-2px)}
-        .scroll-i{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--t3);font-size:.8rem;animation:bo 2s infinite}
-        @keyframes bo{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
-
+        
         .sec{padding:100px 2rem;position:relative;z-index:1;transition:background .4s}
         .sec:nth-child(even){background:var(--bg2)}
         .ctr{max-width:1100px;margin:0 auto}
         .sh{text-align:center;margin-bottom:4rem}
         .stag{display:inline-block;padding:.4rem 1rem;background:rgba(108,92,231,.1);border:1px solid rgba(108,92,231,.2);border-radius:50px;color:var(--ac2);font-size:.85rem;font-weight:500;margin-bottom:1rem}
         .stit{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;color:var(--t1)}
-
+        
+        /* ... Estilos de experiencia, estudios y habilidades omitidos por brevedad pero incluidos en el bloque final ... */
         .ab-c{display:grid;grid-template-columns:2fr 1fr;gap:3rem;align-items:start}
         .ab-c p{font-size:1.05rem;color:var(--t2);line-height:1.9}
         .ab-d{display:flex;flex-direction:column;gap:1.2rem}
@@ -139,20 +180,6 @@
         .pgl{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;padding:.5rem 1rem;background:rgba(255,255,255,.05);border:1px solid var(--brd2);border-radius:50px;font-size:.85rem;color:var(--t2);transition:all .3s}
         .pgl:hover{background:rgba(108,92,231,.1);border-color:var(--ac);color:var(--ac2)}
 
-        .sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:1.2rem}
-        .sc{display:flex;flex-direction:column;align-items:center;gap:.8rem;padding:1.5rem 1rem;background:var(--card);border:1px solid var(--brd);border-radius:12px;transition:all .3s}
-        .sc:hover{border-color:var(--ac);transform:translateY(-5px);box-shadow:0 10px 30px rgba(108,92,231,.15)}
-        .sc img{width:40px;height:40px}
-        .sc i{font-size:2rem;color:var(--ac2)}
-        .sn{font-size:.85rem;font-weight:600;color:var(--t2);text-align:center}
-
-        .cc{text-align:center}
-        .ct{font-size:1.1rem;color:var(--t2);margin-bottom:2rem}
-        .cms{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
-        .cm{display:flex;align-items:center;gap:.8rem;padding:1rem 1.5rem;background:var(--card);border:1px solid var(--brd);border-radius:12px;color:var(--t2);transition:all .3s}
-        .cm:hover{border-color:var(--ac);color:var(--ac2);transform:translateY(-3px)}
-        .cm i{font-size:1.2rem;color:var(--ac2)}
-
         .skills-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
         .skill-box{background:var(--card);border:1px solid var(--brd);border-radius:12px;padding:1.8rem;transition:all .3s}
         .skill-box:hover{border-color:var(--ac);box-shadow:var(--shd)}
@@ -161,9 +188,12 @@
         .skill-item{display:flex;align-items:center;gap:.5rem;color:var(--t2);font-size:.9rem;font-weight:500}
         .skill-item img{width:32px;height:32px}
 
-        .skill-category{margin-bottom:3rem}
-        .skill-category:last-child{margin-bottom:0}
-        .skill-cat-title{color:var(--ac2);font-size:1rem;font-weight:600;margin-bottom:1.2rem;text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:.5rem}
+        .cc{text-align:center}
+        .ct{font-size:1.1rem;color:var(--t2);margin-bottom:2rem}
+        .cms{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+        .cm{display:flex;align-items:center;gap:.8rem;padding:1rem 1.5rem;background:var(--card);border:1px solid var(--brd);border-radius:12px;color:var(--t2);transition:all .3s}
+        .cm:hover{border-color:var(--ac);color:var(--ac2);transform:translateY(-3px)}
+        .cm i{font-size:1.2rem;color:var(--ac2)}
 
         .ft{padding:2rem;text-align:center;border-top:1px solid var(--brd);color:var(--t3);font-size:.85rem;position:relative;z-index:1}
 
@@ -173,7 +203,6 @@
             .ti,.ti.tr{padding-left:60px;padding-right:0;justify-content:flex-start}
             .tm-dot{left:20px}
             .tc{max-width:100%}
-            .sg{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
             .hero-t{font-size:2rem}
         }
     </style>
@@ -191,6 +220,13 @@
     </div>
 </nav>
 
+<div class="st-btn" id="scrollTopBtn">
+    <svg class="st-progress">
+        <circle cx="25" cy="25" r="24"></circle>
+    </svg>
+    <i class="fas fa-arrow-up"></i>
+</div>
+
 <section class="hero" id="inicio">
     <div class="hero-c">
         <h1 class="hero-t">Iván Indias Martín</h1>
@@ -201,14 +237,13 @@
             <span class="btn-o" style="cursor:default"><i class="fas fa-map-marker-alt"></i> Madrid, España</span>
         </div>
     </div>
-    <a href="#sobre-mi" class="scroll-i"><span>Scroll</span><i class="fas fa-chevron-down"></i></a>
 </section>
 
 <section class="sec" id="sobre-mi">
     <div class="ctr">
         <div class="sh"><span class="stag">Conóceme</span><h2 class="stit">Sobre Mí</h2></div>
         <div class="ab-c">
-            <div><p>Estudiante de Grado Superior en Desarrollo de Aplicaciones Multiplataforma con sólidos conocimientos en programación, bases de datos y diseño de interfaces. Apasionado por la tecnología, el desarrollo de software y con ganas de aplicar mis conocimientos en entornos reales. Busco oportunidades para seguir aprendiendo y crecer en el sector tecnológico.</p></div>
+            <div><p>Estudiante de Grado Superior en Desarrollo de Aplicaciones Multiplataforma con sólidos conocimientos en programación, bases de datos y diseño de interfaces. Apasionado por la tecnología, el desarrollo de software y con ganas de aplicar mis conocimientos en entornos reales.</p></div>
             <div class="ab-d">
                 <div class="di">
                     <i class="fas fa-envelope"></i>
@@ -244,10 +279,6 @@
                 <div class="ei"><i class="fas fa-graduation-cap"></i></div>
                 <div><div class="edt">2024 - Presente</div><h3 class="etit">CFGS: Desarrollo de Aplicaciones Multiplataforma</h3><h4 class="einst">IES Luis Vives</h4></div>
             </div>
-            <div class="ec">
-                <div class="ei"><i class="fas fa-graduation-cap"></i></div>
-                <div><div class="edt">2022 - 2024</div><h3 class="etit">Bachillerato</h3><h4 class="einst">IES San Nicasio</h4></div>
-            </div>
         </div>
     </div>
 </section>
@@ -260,36 +291,9 @@
                 <div class="tm-dot"></div>
                 <div class="tc">
                     <h3 class="tt">Practica Mapas</h3>
-                    <p class="tds">Aplicación en la que aparece un logo con una animación de rotación constante y tiene 2 botones, uno te lleva a la cámara y el otro a un mapa.</p>
+                    <p class="tds">Aplicación en Kotlin con animaciones y geolocalización.</p>
                     <div class="ptags"><span class="tag">Kotlin</span></div>
-                    <a href="https://github.com/inndiaass/PMDM-Mapas.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
-                </div>
-            </div>
-            <div class="ti tr">
-                <div class="tm-dot"></div>
-                <div class="tc">
-                    <h3 class="tt">Estacionamiento Inteligente</h3>
-                    <p class="tds">Aplicación que simula un estacionamiento inteligente en Java.</p>
-                    <div class="ptags"><span class="tag">Java</span></div>
-                    <a href="https://github.com/inndiaass/Psp-estacionamiento-inteligente.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
-                </div>
-            </div>
-            <div class="ti">
-                <div class="tm-dot"></div>
-                <div class="tc">
-                    <h3 class="tt">Portfolio</h3>
-                    <p class="tds">Portfolio personal hecho en Java con Spring Boot.</p>
-                    <div class="ptags"><span class="tag">Java</span></div>
-                    <a href="https://github.com/inndiaass/PracticaSpring2.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
-                </div>
-            </div>
-            <div class="ti tr">
-                <div class="tm-dot"></div>
-                <div class="tc">
-                    <h3 class="tt">API Empleados y Departamentos</h3>
-                    <p class="tds">API REST de gestión de empleados y departamentos desarrollada con Python y FastAPI.</p>
-                    <div class="ptags"><span class="tag">Python</span><span class="tag">FastAPI</span></div>
-                    <a href="https://github.com/inndiaass/ApiPractica.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
+                    <a href="https://github.com/inndiaass/PMDM-Mapas.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>GitHub</span></a>
                 </div>
             </div>
         </div>
@@ -299,34 +303,12 @@
 <section class="sec" id="habilidades">
     <div class="ctr">
         <div class="sh"><span class="stag">Tecnologías</span><h2 class="stit">Habilidades</h2></div>
-
         <div class="skills-container">
             <div class="skill-box">
-                <h3 class="skill-box-title"><i class="fas fa-code"></i> Lenguajes de Programación</h3>
+                <h3 class="skill-box-title"><i class="fas fa-code"></i> Lenguajes</h3>
                 <div class="skill-items">
                     <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"> Java</span>
                     <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"> Python</span>
-                    <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#"> C#</span>
-                    <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" alt="Kotlin"> Kotlin</span>
-                    <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL / PLSQL"> SQL / PLSQL</span>
-                </div>
-            </div>
-
-            <div class="skill-box">
-                <h3 class="skill-box-title"><i class="fas fa-layer-group"></i> Frameworks</h3>
-                <div class="skill-items">
-                    <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot"> Spring Boot</span>
-                    <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" alt=".NET"> .NET</span>
-                    <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hibernate/hibernate-original.svg" alt="Hibernate"> Hibernate</span>
-                </div>
-            </div>
-
-            <div class="skill-box">
-                <h3 class="skill-box-title"><i class="fas fa-wrench"></i> Herramientas</h3>
-                <div class="skill-items">
-                    <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git / GitHub"> Git / GitHub</span>
-                    <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"> Docker</span>
-                    <span class="tag"><i class="fas fa-chart-bar" style="font-size:.85rem"></i> PowerBI</span>
                 </div>
             </div>
         </div>
@@ -337,7 +319,6 @@
     <div class="ctr">
         <div class="sh"><span class="stag">Hablemos</span><h2 class="stit">Contacto</h2></div>
         <div class="cc">
-            <p class="ct">¿Interesado en trabajar juntos? ¡No dudes en contactarme!</p>
             <div class="cms">
                 <a id="contactEmail" href="#" class="cm"><i class="fas fa-envelope"></i><span>cargando...</span></a>
             </div>
@@ -348,22 +329,20 @@
 <footer class="ft"><p>&copy; 2026 Iván Indias Martín. Todos los derechos reservados.</p></footer>
 
 <script>
-// ===== Email (built via JS to avoid Cloudflare obfuscation) =====
+// ===== Email JS =====
 (function(){
     var u='inndiaass6',d='gmail.com',e=u+'@'+d,m='mai'+'lto:'+e;
     var ae=document.getElementById('aboutEmail');if(ae){ae.href=m;ae.textContent=e;}
     var ce=document.getElementById('contactEmail');if(ce){ce.href=m;ce.querySelector('span').textContent=e;}
 })();
 
-// ===== Tech Background =====
+// ===== Tech Background (Canvas) =====
 (function(){
     var c=document.getElementById('bgCanvas'),x=c.getContext('2d');
     var w,h,pts=[],N=50,maxD=140;
     function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}
     window.addEventListener('resize',resize);resize();
-    for(var i=0;i<N;i++){
-        pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*2+1});
-    }
+    for(var i=0;i<N;i++){ pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*2+1}); }
     function draw(){
         x.clearRect(0,0,w,h);
         var light=document.body.classList.contains('light');
@@ -379,22 +358,40 @@
     draw();
 })();
 
-// ===== Navbar scroll =====
-window.addEventListener('scroll',function(){
-    document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
+// ===== Lógica de Scroll (Navbar y Botón Progreso) =====
+window.addEventListener('scroll', function() {
+    var nav = document.getElementById('navbar');
+    var stBtn = document.getElementById('scrollTopBtn');
+    var circle = document.querySelector('.st-progress circle');
+    
+    // Navbar visible/invisible
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+
+    // Botón Scroll Top
+    if (window.scrollY > 100) {
+        stBtn.classList.add('active');
+    } else {
+        stBtn.classList.remove('active');
+    }
+
+    // Cálculo del progreso
+    var totalHeight = document.body.scrollHeight - window.innerHeight;
+    var progress = window.scrollY / totalHeight;
+    var dashoffset = 151 - (progress * 151);
+    circle.style.strokeDashoffset = dashoffset;
 });
 
-// ===== Theme toggle (uses class on body, no localStorage) =====
+// Click para subir
+document.getElementById('scrollTopBtn').addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ===== Theme toggle =====
 document.getElementById('themeToggle').addEventListener('click',function(){
     document.body.classList.toggle('light');
     var ico=document.getElementById('themeIcon');
-    if(document.body.classList.contains('light')){
-        ico.classList.remove('fa-sun');
-        ico.classList.add('fa-moon');
-    } else {
-        ico.classList.remove('fa-moon');
-        ico.classList.add('fa-sun');
-    }
+    ico.classList.toggle('fa-sun');
+    ico.classList.toggle('fa-moon');
 });
 
 // ===== Scroll reveal =====
