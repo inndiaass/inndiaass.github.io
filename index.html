@@ -105,6 +105,14 @@
         .pgl{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;padding:.5rem 1rem;background:rgba(255,255,255,.05);border:1px solid var(--brd2);border-radius:50px;font-size:.85rem;color:var(--t2);transition:all .3s}
         .pgl:hover{background:rgba(108,92,231,.1);border-color:var(--ac);color:var(--ac2)}
 
+        .tl-left{position:relative;padding:1rem 0 1rem 30px}
+        .tl-left::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,var(--ac),transparent)}
+        .tl-item{position:relative;padding-left:30px;padding-bottom:2rem}
+        .tl-item:last-child{padding-bottom:0}
+        .tl-dot{position:absolute;left:-26px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--ac);border:3px solid var(--bg);box-shadow:0 0 15px var(--glow);z-index:2}
+        .tl-card{background:var(--card);border:1px solid var(--brd);border-radius:12px;padding:1.5rem;transition:all .3s}
+        .tl-card:hover{border-color:var(--ac);transform:translateY(-3px);box-shadow:var(--shd)}
+
         .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
         .proj-card{background:var(--card);border:1px solid var(--brd);border-radius:12px;padding:1.5rem;transition:all .3s;display:flex;flex-direction:column}
         .proj-card:hover{border-color:var(--ac);transform:translateY(-3px);box-shadow:var(--shd)}
@@ -186,10 +194,15 @@
 <section class="sec" id="experiencia">
     <div class="ctr">
         <div class="sh"><span class="stag">Trayectoria</span><h2 class="stit">Experiencia Laboral</h2></div>
-        <div class="eg">
-            <div class="ec">
-                <div class="ei"><i class="fas fa-briefcase"></i></div>
-                <div><div class="edt">Ene 2025 - Presente</div><h3 class="etit">Prácticas</h3><h4 class="einst">CTIF Madrid-Oeste</h4><p style="font-size:.9rem;color:var(--t3);margin-top:.3rem">Prácticas en el CTIF Madrid-Oeste.</p></div>
+        <div class="tl-left">
+            <div class="tl-item">
+                <div class="tl-dot"></div>
+                <div class="tl-card">
+                    <div class="td">Ene 2025 - Presente</div>
+                    <h3 class="tt">Prácticas</h3>
+                    <h4 class="ts">CTIF Madrid-Oeste</h4>
+                    <p class="tds">Prácticas en el CTIF Madrid-Oeste.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -345,7 +358,7 @@ document.getElementById('themeToggle').addEventListener('click',function(){
 var obs=new IntersectionObserver(function(entries){
     entries.forEach(function(e){if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}});
 },{threshold:0.1});
-document.querySelectorAll('.proj-card,.ec,.skill-box,.di,.cm').forEach(function(el){
+document.querySelectorAll('.proj-card,.ec,.skill-box,.di,.cm,.tl-item').forEach(function(el){
     el.style.opacity='0';el.style.transform='translateY(30px)';
     el.style.transition='all .6s ease-out';obs.observe(el);
 });
