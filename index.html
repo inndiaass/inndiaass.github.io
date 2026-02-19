@@ -38,8 +38,12 @@
         .nav-i{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
         .nav-b{font-size:1.3rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;transition:opacity .3s,transform .3s}
         .nav-c.scrolled .nav-b{opacity:0;transform:translateY(-10px)}
-        .t-tog{background:var(--card);border:1px solid var(--brd2);color:var(--t1);width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .3s;pointer-events:auto;box-shadow:var(--shd)}
-        .t-tog:hover{border-color:var(--ac);transform:rotate(30deg);box-shadow:0 0 15px var(--glow)}
+        
+        /* Contenedor de botones en nav */
+        .nav-actions { display: flex; gap: 0.8rem; pointer-events: auto; }
+        .t-tog{background:var(--card);border:1px solid var(--brd2);color:var(--t1);width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .3s;box-shadow:var(--shd)}
+        .t-tog:hover{border-color:var(--ac);box-shadow:0 0 15px var(--glow)}
+        .lang-btn { font-size: 0.85rem; font-weight: 700; font-family: 'Sora', sans-serif; }
 
         .st-btn{position:fixed;bottom:30px;right:30px;width:46px;height:46px;background:var(--card);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:1000;opacity:0;visibility:hidden;transform:translateY(20px);transition:all .4s;box-shadow:var(--shd);border:1px solid var(--brd)}
         .st-btn.active{opacity:1;visibility:visible;transform:translateY(0)}
@@ -64,26 +68,15 @@
         .sec{padding:100px 2rem;position:relative;z-index:1;transition:background .4s}
         .ctr{max-width:1100px;margin:0 auto}
         .sh{text-align:center;margin-bottom:4rem}
-        .stag{display:inline-block;padding:.4rem 1rem;background:rgba(108,92,231,.1);border:1px solid rgba(108,92,231,.2);border-radius:50px;color:var(--ac2);font-size:.85rem;font-weight:500;margin-bottom:1rem}
         .stit{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;color:var(--t1)}
 
-        .ab-c{display:grid;grid-template-columns:2fr 1fr;gap:3rem;align-items:start}
-        .ab-c p{font-size:1.05rem;color:var(--t2);line-height:1.9}
-        .ab-d{display:flex;flex-direction:column;gap:1.2rem}
-        .di{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:var(--card);border-radius:12px;border:1px solid var(--brd);transition:all .3s}
-        .di:hover{border-color:var(--ac);transform:translateX(5px)}
-        .di i{font-size:1.3rem;color:var(--ac2);width:24px;text-align:center}
-        .dl{display:block;font-size:.75rem;color:var(--t3);text-transform:uppercase;letter-spacing:.5px}
-        .di a{color:var(--t1);font-size:.9rem;font-weight:500}
-        .di a:hover{color:var(--ac2)}
-
-        .tl{position:relative;padding:2rem 0}
-        .tl::before{content:'';position:absolute;left:50%;transform:translateX(-50%);top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,var(--ac),transparent)}
-        .ti{display:flex;justify-content:flex-end;padding-right:calc(50% + 40px);padding-bottom:3rem;position:relative}
-        .ti.tr{justify-content:flex-start;padding-right:0;padding-left:calc(50% + 40px)}
-        .tm-dot{position:absolute;left:50%;transform:translateX(-50%);width:16px;height:16px;border-radius:50%;background:var(--ac);border:3px solid var(--bg);box-shadow:0 0 20px var(--glow);z-index:2}
-        .tc{background:var(--card);border:1px solid var(--brd);border-radius:12px;padding:1.5rem;max-width:450px;transition:all .3s}
-        .tc:hover{border-color:var(--ac);transform:translateY(-3px);box-shadow:var(--shd)}
+        .tl-left{position:relative;padding:1rem 0 1rem 30px}
+        .tl-left::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,var(--ac),transparent)}
+        .tl-item{position:relative;padding-left:30px;padding-bottom:2rem}
+        .tl-item:last-child{padding-bottom:0}
+        .tl-dot{position:absolute;left:-26px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--ac);border:3px solid var(--bg);box-shadow:0 0 15px var(--glow);z-index:2}
+        .tl-card{background:var(--card);border:1px solid var(--brd);border-radius:12px;padding:1.5rem;transition:all .3s}
+        .tl-card:hover{border-color:var(--ac);transform:translateY(-3px);box-shadow:var(--shd)}
         .td{font-size:.8rem;color:var(--ac2);font-weight:500;margin-bottom:.5rem}
         .tt{font-size:1.15rem;font-weight:600;color:var(--t1);margin-bottom:.3rem}
         .ts{font-size:.95rem;color:var(--t2);font-weight:400;margin-bottom:.5rem}
@@ -101,22 +94,13 @@
         .tag{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1rem;background:rgba(255,255,255,.05);border:1px solid var(--brd2);border-radius:50px;font-size:.88rem;color:var(--t2);font-weight:500;transition:all .3s}
         .tag:hover{border-color:var(--ac);color:var(--ac2)}
         .tag img{width:20px;height:20px}
-        .ptags .tag{background:rgba(108,92,231,.1);border-color:rgba(108,92,231,.2);color:var(--ac2);font-size:.78rem;padding:.25rem .7rem}
-        .pgl{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;padding:.5rem 1rem;background:rgba(255,255,255,.05);border:1px solid var(--brd2);border-radius:50px;font-size:.85rem;color:var(--t2);transition:all .3s}
-        .pgl:hover{background:rgba(108,92,231,.1);border-color:var(--ac);color:var(--ac2)}
-
-        .tl-left{position:relative;padding:1rem 0 1rem 30px}
-        .tl-left::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,var(--ac),transparent)}
-        .tl-item{position:relative;padding-left:30px;padding-bottom:2rem}
-        .tl-item:last-child{padding-bottom:0}
-        .tl-dot{position:absolute;left:-26px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--ac);border:3px solid var(--bg);box-shadow:0 0 15px var(--glow);z-index:2}
-        .tl-card{background:var(--card);border:1px solid var(--brd);border-radius:12px;padding:1.5rem;transition:all .3s}
-        .tl-card:hover{border-color:var(--ac);transform:translateY(-3px);box-shadow:var(--shd)}
 
         .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
         .proj-card{background:var(--card);border:1px solid var(--brd);border-radius:12px;padding:1.5rem;transition:all .3s;display:flex;flex-direction:column}
         .proj-card:hover{border-color:var(--ac);transform:translateY(-3px);box-shadow:var(--shd)}
         .proj-card .tds{flex:1}
+        .pgl{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;padding:.5rem 1rem;background:rgba(255,255,255,.05);border:1px solid var(--brd2);border-radius:50px;font-size:.85rem;color:var(--t2);transition:all .3s}
+        .pgl:hover{background:rgba(108,92,231,.1);border-color:var(--ac);color:var(--ac2)}
 
         .skills-container{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
         .skill-box{background:var(--card);border:1px solid var(--brd);border-radius:12px;padding:1.8rem;transition:all .3s}
@@ -124,17 +108,9 @@
         .skill-box-title{color:var(--ac2);font-size:.95rem;font-weight:600;margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem;text-transform:uppercase;letter-spacing:1px}
         .skill-items{display:flex;flex-wrap:wrap;gap:.8rem}
 
-        .cc{text-align:center}
-        .ct{font-size:1.1rem;color:var(--t2);margin-bottom:2rem}
-        .cms{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
-        .cm{display:flex;align-items:center;gap:.8rem;padding:1rem 1.5rem;background:var(--card);border:1px solid var(--brd);border-radius:12px;color:var(--t2);transition:all .3s}
-        .cm:hover{border-color:var(--ac);color:var(--ac2);transform:translateY(-3px)}
-        .cm i{font-size:1.2rem;color:var(--ac2)}
-
         .ft{padding:2rem;text-align:center;border-top:1px solid var(--brd);color:var(--t3);font-size:.85rem;position:relative;z-index:1}
 
         @media(max-width:768px){
-            .ab-c{grid-template-columns:1fr}
             .tl::before{left:20px}
             .ti,.ti.tr{padding-left:60px;padding-right:0;justify-content:flex-start}
             .tm-dot{left:20px}
@@ -152,9 +128,14 @@
 <nav class="nav-c" id="navbar">
     <div class="nav-i">
         <a href="#inicio" class="nav-b">Iván Indias</a>
-        <button class="t-tog" id="themeToggle" aria-label="Cambiar tema">
-            <i class="fas fa-sun" id="themeIcon"></i>
-        </button>
+        <div class="nav-actions">
+            <button class="t-tog lang-btn" id="langToggle" aria-label="Cambiar idioma">
+                EN
+            </button>
+            <button class="t-tog" id="themeToggle" aria-label="Cambiar tema">
+                <i class="fas fa-sun" id="themeIcon"></i>
+            </button>
+        </div>
     </div>
 </nav>
 
@@ -166,11 +147,12 @@
 <section class="hero" id="inicio">
     <div class="hero-c">
         <h1 class="hero-t">Iván Indias Martín</h1>
-        <p class="hero-s">Desarrollador de Software</p>
+        <p class="hero-s" data-es="Desarrollador de Software" data-en="Software Developer">Desarrollador de Software</p>
         <div class="hero-a">
             <a href="https://www.linkedin.com/in/ivan-indias-martin/" target="_blank" rel="noopener" class="btn-p"><i class="fab fa-linkedin"></i> LinkedIn</a>
             <a href="https://github.com/inndiaass" target="_blank" rel="noopener" class="btn-o"><i class="fab fa-github"></i> GitHub</a>
-            <span class="btn-o" style="cursor:default"><i class="fas fa-map-marker-alt"></i> Madrid, España</span>
+            <a id="heroEmail" href="#" class="btn-o"><i class="fas fa-envelope"></i> Email</a>
+            <span class="btn-o" style="cursor:default"><i class="fas fa-map-marker-alt"></i> <span data-es="Madrid, España" data-en="Madrid, Spain">Madrid, España</span></span>
         </div>
     </div>
     <a href="#sobre-mi" class="scroll-i"><span>Scroll</span><i class="fas fa-chevron-down"></i></a>
@@ -178,30 +160,26 @@
 
 <section class="sec" id="sobre-mi">
     <div class="ctr">
-        <div class="sh"><span class="stag">Conóceme</span><h2 class="stit">Sobre Mí</h2></div>
-        <div class="ab-c">
-            <div><p>Estudiante de Grado Superior en Desarrollo de Aplicaciones Multiplataforma con sólidos conocimientos en programación, bases de datos y diseño de interfaces. Apasionado por la tecnología, el desarrollo de software y con ganas de aplicar mis conocimientos en entornos reales.</p></div>
-            <div class="ab-d">
-                <div class="di">
-                    <i class="fas fa-envelope"></i>
-                    <div><span class="dl">Email</span><a id="aboutEmail" href="#">cargando...</a></div>
-                </div>
-            </div>
-        </div>
+        <div class="sh"><h2 class="stit" data-es="Sobre Mí" data-en="About Me">Sobre Mí</h2></div>
+        <p style="font-size:1.05rem;color:var(--t2);line-height:1.9;text-align:center;max-width:800px;margin:0 auto" 
+           data-es="Estudiante de Grado Superior en Desarrollo de Aplicaciones Multiplataforma con sólidos conocimientos en programación, bases de datos y diseño de interfaces. Apasionado por la tecnología, el desarrollo de software y con ganas de aplicar mis conocimientos en entornos reales."
+           data-en="Higher Degree student in Multi-platform Applications Development with solid knowledge in programming, databases, and interface design. Passionate about technology and software development, eager to apply my skills in real-world environments.">
+           Estudiante de Grado Superior en Desarrollo de Aplicaciones Multiplataforma con sólidos conocimientos en programación, bases de datos y diseño de interfaces. Apasionado por la tecnología, el desarrollo de software y con ganas de aplicar mis conocimientos en entornos reales.
+        </p>
     </div>
 </section>
 
 <section class="sec" id="experiencia">
     <div class="ctr">
-        <div class="sh"><span class="stag">Trayectoria</span><h2 class="stit">Experiencia Laboral</h2></div>
+        <div class="sh"><h2 class="stit" data-es="Experiencia Laboral" data-en="Work Experience">Experiencia Laboral</h2></div>
         <div class="tl-left">
             <div class="tl-item">
                 <div class="tl-dot"></div>
                 <div class="tl-card">
-                    <div class="td">Ene 2025 - Presente</div>
-                    <h3 class="tt">Prácticas</h3>
+                    <div class="td" data-es="Ene 2025 - Presente" data-en="Jan 2025 - Present">Ene 2025 - Presente</div>
+                    <h3 class="tt" data-es="Prácticas" data-en="Internship">Prácticas</h3>
                     <h4 class="ts">CTIF Madrid-Oeste</h4>
-                    <p class="tds">Prácticas en el CTIF Madrid-Oeste.</p>
+                    <p class="tds" data-es="Prácticas en el CTIF Madrid-Oeste." data-en="Internship at CTIF Madrid-Oeste.">Prácticas en el CTIF Madrid-Oeste.</p>
                 </div>
             </div>
         </div>
@@ -210,15 +188,23 @@
 
 <section class="sec" id="estudios">
     <div class="ctr">
-        <div class="sh"><span class="stag">Formación</span><h2 class="stit">Estudios</h2></div>
+        <div class="sh"><h2 class="stit" data-es="Estudios" data-en="Education">Estudios</h2></div>
         <div class="eg">
             <div class="ec">
                 <div class="ei"><i class="fas fa-graduation-cap"></i></div>
-                <div><div class="edt">2024 - Presente</div><h3 class="etit">CFGS: Desarrollo de Aplicaciones Multiplataforma</h3><h4 class="einst">IES Luis Vives</h4></div>
+                <div>
+                    <div class="edt">2024 - Presente</div>
+                    <h3 class="etit" data-es="CFGS: Desarrollo de Aplicaciones Multiplataforma" data-en="HNC: Multi-platform Application Development">CFGS: Desarrollo de Aplicaciones Multiplataforma</h3>
+                    <h4 class="einst">IES Luis Vives</h4>
+                </div>
             </div>
             <div class="ec">
                 <div class="ei"><i class="fas fa-graduation-cap"></i></div>
-                <div><div class="edt">2022 - 2024</div><h3 class="etit">Bachillerato</h3><h4 class="einst">IES San Nicasio</h4></div>
+                <div>
+                    <div class="edt">2022 - 2024</div>
+                    <h3 class="etit" data-es="Bachillerato" data-en="High School Diploma">Bachillerato</h3>
+                    <h4 class="einst">IES San Nicasio</h4>
+                </div>
             </div>
         </div>
     </div>
@@ -226,31 +212,31 @@
 
 <section class="sec" id="proyectos">
     <div class="ctr">
-        <div class="sh"><span class="stag">Portfolio</span><h2 class="stit">Proyectos</h2></div>
+        <div class="sh"><h2 class="stit" data-es="Proyectos" data-en="Projects">Proyectos</h2></div>
         <div class="proj-grid">
             <div class="proj-card">
-                <h3 class="tt">Practica Mapas</h3>
-                <p class="tds">Aplicación con logo animado y geolocalización.</p>
+                <h3 class="tt" data-es="Practica Mapas" data-en="Maps Practice">Practica Mapas</h3>
+                <p class="tds" data-es="Aplicación con logo animado y geolocalización." data-en="App with animated logo and geolocation features.">Aplicación con logo animado y geolocalización.</p>
                 <div class="ptags"><span class="tag">Kotlin</span></div>
-                <a href="https://github.com/inndiaass/PMDM-Mapas.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
+                <a href="https://github.com/inndiaass/PMDM-Mapas.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span data-es="Ver en GitHub" data-en="View on GitHub">Ver en GitHub</span></a>
             </div>
             <div class="proj-card">
-                <h3 class="tt">Estacionamiento Inteligente</h3>
-                <p class="tds">Simulación de estacionamiento en Java.</p>
+                <h3 class="tt" data-es="Estacionamiento Inteligente" data-en="Smart Parking">Estacionamiento Inteligente</h3>
+                <p class="tds" data-es="Simulación de estacionamiento en Java." data-en="Parking simulation developed in Java.">Simulación de estacionamiento en Java.</p>
                 <div class="ptags"><span class="tag">Java</span></div>
-                <a href="https://github.com/inndiaass/Psp-estacionamiento-inteligente.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
+                <a href="https://github.com/inndiaass/Psp-estacionamiento-inteligente.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span data-es="Ver en GitHub" data-en="View on GitHub">Ver en GitHub</span></a>
             </div>
             <div class="proj-card">
                 <h3 class="tt">Portfolio</h3>
-                <p class="tds">Portfolio hecho con Spring Boot.</p>
+                <p class="tds" data-es="Portfolio hecho con Spring Boot." data-en="Portfolio built with Spring Boot.">Portfolio hecho con Spring Boot.</p>
                 <div class="ptags"><span class="tag">Java</span></div>
-                <a href="https://github.com/inndiaass/PracticaSpring2.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
+                <a href="https://github.com/inndiaass/PracticaSpring2.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span data-es="Ver en GitHub" data-en="View on GitHub">Ver en GitHub</span></a>
             </div>
             <div class="proj-card">
-                <h3 class="tt">API Empleados</h3>
-                <p class="tds">API REST con Python y FastAPI.</p>
+                <h3 class="tt" data-es="API Empleados" data-en="Employees API">API Empleados</h3>
+                <p class="tds" data-es="API REST con Python y FastAPI." data-en="REST API built with Python and FastAPI.">API REST con Python y FastAPI.</p>
                 <div class="ptags"><span class="tag">Python</span><span class="tag">FastAPI</span></div>
-                <a href="https://github.com/inndiaass/ApiPractica.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span>Ver en GitHub</span></a>
+                <a href="https://github.com/inndiaass/ApiPractica.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span data-es="Ver en GitHub" data-en="View on GitHub">Ver en GitHub</span></a>
             </div>
         </div>
     </div>
@@ -258,10 +244,10 @@
 
 <section class="sec" id="habilidades">
     <div class="ctr">
-        <div class="sh"><span class="stag">Tecnologías</span><h2 class="stit">Habilidades</h2></div>
+        <div class="sh"><h2 class="stit" data-es="Habilidades" data-en="Skills">Habilidades</h2></div>
         <div class="skills-container">
             <div class="skill-box">
-                <h3 class="skill-box-title"><i class="fas fa-code"></i> Lenguajes</h3>
+                <h3 class="skill-box-title"><i class="fas fa-code"></i> <span data-es="Lenguajes" data-en="Languages">Lenguajes</span></h3>
                 <div class="skill-items">
                     <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"> Java</span>
                     <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#"> C#</span>
@@ -272,7 +258,7 @@
                 </div>
             </div>
             <div class="skill-box">
-                <h3 class="skill-box-title"><i class="fas fa-database"></i> Bases de Datos</h3>
+                <h3 class="skill-box-title"><i class="fas fa-database"></i> <span data-es="Bases de Datos" data-en="Databases">Bases de Datos</span></h3>
                 <div class="skill-items">
                     <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"> MySQL</span>
                     <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle"> Oracle / PL-SQL</span>
@@ -289,7 +275,7 @@
                 </div>
             </div>
             <div class="skill-box">
-                <h3 class="skill-box-title"><i class="fas fa-rocket"></i> DevOps & Herramientas</h3>
+                <h3 class="skill-box-title"><i class="fas fa-rocket"></i> <span data-es="DevOps & Herramientas" data-en="DevOps & Tools">DevOps & Herramientas</span></h3>
                 <div class="skill-items">
                     <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"> Git</span>
                     <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"> GitHub</span>
@@ -301,14 +287,26 @@
     </div>
 </section>
 
-<footer class="ft"><p>&copy; 2026 Iván Indias Martín. Todos los derechos reservados.</p></footer>
+<footer class="ft"><p>&copy; 2026 Iván Indias Martín. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p></footer>
 
 <script>
+// ===== Language Toggle Logic =====
+const langToggle = document.getElementById('langToggle');
+let currentLang = 'es';
+
+langToggle.addEventListener('click', () => {
+    currentLang = currentLang === 'es' ? 'en' : 'es';
+    langToggle.textContent = currentLang === 'es' ? 'EN' : 'ES';
+    
+    document.querySelectorAll('[data-es]').forEach(el => {
+        el.textContent = el.getAttribute(`data-${currentLang}`);
+    });
+});
+
 // ===== Email =====
 (function(){
     var u='inndiaass6',d='gmail.com',e=u+'@'+d,m='mai'+'lto:'+e;
-    var ae=document.getElementById('aboutEmail');if(ae){ae.href=m;ae.textContent=e;}
-    var ce=document.getElementById('contactEmail');if(ce){ce.href=m;ce.querySelector('span').textContent=e;}
+    var he=document.getElementById('heroEmail');if(he){he.href=m;}
 })();
 
 // ===== Canvas Background =====
