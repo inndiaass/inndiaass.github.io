@@ -39,7 +39,6 @@
         .nav-b{font-size:1.3rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;transition:opacity .3s,transform .3s}
         .nav-c.scrolled .nav-b{opacity:0;transform:translateY(-10px)}
         
-        /* Contenedor de botones en nav */
         .nav-actions { display: flex; gap: 0.8rem; pointer-events: auto; }
         .t-tog{background:var(--card);border:1px solid var(--brd2);color:var(--t1);width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .3s;box-shadow:var(--shd)}
         .t-tog:hover{border-color:var(--ac);box-shadow:0 0 15px var(--glow)}
@@ -52,12 +51,23 @@
         .st-progress{position:absolute;top:-2px;left:-2px;width:50px;height:50px;transform:rotate(-90deg);pointer-events:none}
         .st-progress circle{fill:none;stroke:var(--ac2);stroke-width:3;stroke-dasharray:151;stroke-dashoffset:151;stroke-linecap:round;transition:stroke-dashoffset .1s linear}
 
+        /* HERO - Split layout */
         .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:120px 2rem 60px;z-index:1}
-        .hero-c{text-align:center;position:relative;z-index:1}
+        .hero-split{display:flex;align-items:center;gap:4rem;max-width:1100px;margin:0 auto;width:100%}
+        .hero-left{flex:1;text-align:left;position:relative;z-index:1}
+        .hero-right{flex:1;position:relative;z-index:1}
         .hero-t{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;margin-bottom:.5rem;background:linear-gradient(135deg,var(--t1),var(--ac2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fu 1s ease .2s both}
         .hero-s{font-size:1.1rem;color:var(--t2);margin-bottom:2rem;font-weight:300;letter-spacing:2px;text-transform:uppercase;animation:fu 1s ease .4s both}
-        .hero-a{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fu 1s ease .6s both}
+        .hero-a{display:flex;gap:1rem;flex-wrap:wrap;animation:fu 1s ease .6s both}
         @keyframes fu{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+        /* About me in hero right */
+        .hero-about{animation:fu 1s ease .8s both}
+        .hero-about-title{font-size:1.3rem;font-weight:600;color:var(--ac2);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+        .hero-about-title i{font-size:1rem}
+        .hero-about p{font-size:1rem;color:var(--t2);line-height:1.9}
+        .hero-about-divider{width:40px;height:3px;background:var(--grad);border-radius:2px;margin-bottom:1.2rem}
+
         .btn-p{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.8rem;background:var(--grad);color:#fff;border-radius:50px;font-weight:600;font-size:.95rem;border:none;box-shadow:0 4px 20px var(--glow);transition:all .3s}
         .btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--glow);color:#fff}
         .btn-o{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.8rem;background:transparent;color:var(--t1);border:2px solid var(--brd2);border-radius:50px;font-weight:600;font-size:.95rem;transition:all .3s}
@@ -111,10 +121,12 @@
         .ft{padding:2rem;text-align:center;border-top:1px solid var(--brd);color:var(--t3);font-size:.85rem;position:relative;z-index:1}
 
         @media(max-width:768px){
-            .tl::before{left:20px}
-            .ti,.ti.tr{padding-left:60px;padding-right:0;justify-content:flex-start}
-            .tm-dot{left:20px}
-            .tc{max-width:100%}
+            .hero-split{flex-direction:column;gap:2.5rem}
+            .hero-left{text-align:center}
+            .hero-a{justify-content:center}
+            .hero-about-title{justify-content:center}
+            .hero-about-divider{margin-left:auto;margin-right:auto}
+            .hero-about p{text-align:center}
             .hero-t{font-size:2rem}
             .skills-container{grid-template-columns:1fr}
             .proj-grid{grid-template-columns:1fr}
@@ -145,28 +157,29 @@
 </div>
 
 <section class="hero" id="inicio">
-    <div class="hero-c">
-        <h1 class="hero-t">Iván Indias Martín</h1>
-        <p class="hero-s" data-es="Desarrollador de Software" data-en="Software Developer">Desarrollador de Software</p>
-        <div class="hero-a">
-            <a href="https://www.linkedin.com/in/ivan-indias-martin/" target="_blank" rel="noopener" class="btn-p"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="https://github.com/inndiaass" target="_blank" rel="noopener" class="btn-o"><i class="fab fa-github"></i> GitHub</a>
-            <a id="heroEmail" href="#" class="btn-o"><i class="fas fa-envelope"></i> Email</a>
-            <span class="btn-o" style="cursor:default"><i class="fas fa-map-marker-alt"></i> <span data-es="Madrid, España" data-en="Madrid, Spain">Madrid, España</span></span>
+    <div class="hero-split">
+        <div class="hero-left">
+            <h1 class="hero-t">Iván Indias Martín</h1>
+            <p class="hero-s" data-es="Desarrollador de Software" data-en="Software Developer">Desarrollador de Software</p>
+            <div class="hero-a">
+                <a href="https://www.linkedin.com/in/ivan-indias-martin/" target="_blank" rel="noopener" class="btn-p"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/inndiaass" target="_blank" rel="noopener" class="btn-o"><i class="fab fa-github"></i> GitHub</a>
+                <a id="heroEmail" href="#" class="btn-o"><i class="fas fa-envelope"></i> Email</a>
+                <span class="btn-o" style="cursor:default"><i class="fas fa-map-marker-alt"></i> <span data-es="Madrid, España" data-en="Madrid, Spain">Madrid, España</span></span>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-about">
+                <h2 class="hero-about-title"><i class="fas fa-user"></i> <span data-es="Sobre Mí" data-en="About Me">Sobre Mí</span></h2>
+                <div class="hero-about-divider"></div>
+                <p data-es="Estudiante de Grado Superior en Desarrollo de Aplicaciones Multiplataforma con sólidos conocimientos en programación, bases de datos y diseño de interfaces. Apasionado por la tecnología, el desarrollo de software y con ganas de aplicar mis conocimientos en entornos reales."
+                   data-en="Higher Degree student in Multi-platform Applications Development with solid knowledge in programming, databases, and interface design. Passionate about technology and software development, eager to apply my skills in real-world environments.">
+                   Estudiante de Grado Superior en Desarrollo de Aplicaciones Multiplataforma con sólidos conocimientos en programación, bases de datos y diseño de interfaces. Apasionado por la tecnología, el desarrollo de software y con ganas de aplicar mis conocimientos en entornos reales.
+                </p>
+            </div>
         </div>
     </div>
-    <a href="#sobre-mi" class="scroll-i"><span>Scroll</span><i class="fas fa-chevron-down"></i></a>
-</section>
-
-<section class="sec" id="sobre-mi">
-    <div class="ctr">
-        <div class="sh"><h2 class="stit" data-es="Sobre Mí" data-en="About Me">Sobre Mí</h2></div>
-        <p style="font-size:1.05rem;color:var(--t2);line-height:1.9;text-align:center;max-width:800px;margin:0 auto" 
-           data-es="Estudiante de Grado Superior en Desarrollo de Aplicaciones Multiplataforma con sólidos conocimientos en programación, bases de datos y diseño de interfaces. Apasionado por la tecnología, el desarrollo de software y con ganas de aplicar mis conocimientos en entornos reales."
-           data-en="Higher Degree student in Multi-platform Applications Development with solid knowledge in programming, databases, and interface design. Passionate about technology and software development, eager to apply my skills in real-world environments.">
-           Estudiante de Grado Superior en Desarrollo de Aplicaciones Multiplataforma con sólidos conocimientos en programación, bases de datos y diseño de interfaces. Apasionado por la tecnología, el desarrollo de software y con ganas de aplicar mis conocimientos en entornos reales.
-        </p>
-    </div>
+    <a href="#experiencia" class="scroll-i"><span>Scroll</span><i class="fas fa-chevron-down"></i></a>
 </section>
 
 <section class="sec" id="experiencia">
