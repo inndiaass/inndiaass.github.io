@@ -58,6 +58,26 @@
 
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
+        /* Custom cursor */
+        * { cursor: none !important; }
+        #cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: var(--ac);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: transform .1s ease, background .3s, width .2s ease, height .2s ease;
+            box-shadow: 0 0 10px var(--glow), 0 0 20px var(--glow);
+        }
+        #cursor.hover {
+            width: 22px;
+            height: 22px;
+            background: var(--ac2);
+        }
+
         html{scroll-behavior:smooth;scroll-padding-top:80px}
 
         body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;overflow-x:hidden;transition:background .4s,color .4s}
@@ -162,15 +182,55 @@
 
 
 
-        .tl-left{position:relative;padding:1rem 0 1rem 30px}
+        .tl-left{position:relative;padding:1rem 0 1rem 40px}
 
-        .tl-left::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,var(--ac),transparent)}
+        .tl-left::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,var(--ac),transparent)}
 
-        .tl-item{position:relative;padding-left:30px;padding-bottom:2rem}
+        .tl-item{position:relative;padding-left:0;padding-bottom:2rem}
 
         .tl-item:last-child{padding-bottom:0}
 
-        .tl-dot{position:absolute;left:-26px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--ac);border:3px solid var(--bg);box-shadow:0 0 15px var(--glow);z-index:2}
+        .tl-dot{
+            position:absolute;
+            left:-27px;
+            top:50%;
+            transform:translateY(-50%);
+            width:14px;height:14px;
+            border-radius:50%;
+            background:var(--ac);
+            border:3px solid var(--bg);
+            box-shadow:0 0 15px var(--glow);
+            z-index:2;
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+
+        @keyframes tl-ping {
+            0%   { transform: translateY(-50%) scale(1); opacity: 1; }
+            70%  { transform: translateY(-50%) scale(2.5); opacity: 0; }
+            100% { transform: translateY(-50%) scale(1); opacity: 0; }
+        }
+
+        .tl-dot::after {
+            content:'';
+            position:absolute;
+            inset:-4px;
+            border-radius:50%;
+            background:var(--ac);
+            opacity:0;
+            transition: opacity .3s;
+        }
+
+        .tl-item:hover .tl-dot {
+            transform: translateY(-50%) scale(1.3);
+            box-shadow: 0 0 0 0 var(--ac), 0 0 20px var(--glow);
+            animation: pulse-ring .9s ease-out infinite;
+        }
+
+        @keyframes pulse-ring {
+            0%   { box-shadow: 0 0 0 0 rgba(224,123,57,0.7), 0 0 20px var(--glow); }
+            70%  { box-shadow: 0 0 0 10px rgba(224,123,57,0), 0 0 20px var(--glow); }
+            100% { box-shadow: 0 0 0 0 rgba(224,123,57,0), 0 0 20px var(--glow); }
+        }
 
         .tl-card{background:var(--card);border:1px solid var(--brd);border-radius:12px;padding:1.5rem;transition:all .3s}
 
@@ -273,6 +333,7 @@
 
 
 <canvas id="bgCanvas"></canvas>
+<div id="cursor"></div>
 
 
 
@@ -380,7 +441,7 @@
 
                 <div class="tl-card">
 
-                    <div class="td" data-es="Ene 2025 - Presente" data-en="Jan 2025 - Present">Ene 2025 - Presente</div>
+                    <div class="td" data-es="Jun 2025" data-en="Jun 2025">Jun 2025</div>
 
                     <h3 class="tt" data-es="Prácticas" data-en="Internship">Prácticas</h3>
 
@@ -462,7 +523,7 @@
 
                 <p class="tds" data-es="Aplicación con logo animado y geolocalización." data-en="App with animated logo and geolocation features.">Aplicación con logo animado y geolocalización.</p>
 
-                <div class="ptags"><span class="tag">Kotlin</span></div>
+                <div class="ptags"><span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" alt="Kotlin"> Kotlin</span></div>
 
                 <a href="https://github.com/inndiaass/PMDM-Mapas.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span data-es="Ver en GitHub" data-en="View on GitHub">Ver en GitHub</span></a>
 
@@ -474,7 +535,7 @@
 
                 <p class="tds" data-es="Simulación de estacionamiento en Java." data-en="Parking simulation developed in Java.">Simulación de estacionamiento en Java.</p>
 
-                <div class="ptags"><span class="tag">Java</span></div>
+                <div class="ptags"><span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"> Java</span></div>
 
                 <a href="https://github.com/inndiaass/Psp-estacionamiento-inteligente.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span data-es="Ver en GitHub" data-en="View on GitHub">Ver en GitHub</span></a>
 
@@ -486,7 +547,7 @@
 
                 <p class="tds" data-es="Portfolio hecho con Spring Boot." data-en="Portfolio built with Spring Boot.">Portfolio hecho con Spring Boot.</p>
 
-                <div class="ptags"><span class="tag">Java</span></div>
+                <div class="ptags"><span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"> Java</span></div>
 
                 <a href="https://github.com/inndiaass/PracticaSpring2.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span data-es="Ver en GitHub" data-en="View on GitHub">Ver en GitHub</span></a>
 
@@ -498,9 +559,21 @@
 
                 <p class="tds" data-es="API REST con Python y FastAPI." data-en="REST API built with Python and FastAPI.">API REST con Python y FastAPI.</p>
 
-                <div class="ptags"><span class="tag">Python</span><span class="tag">FastAPI</span></div>
+                <div class="ptags"><span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"> Python</span><span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI"> FastAPI</span></div>
 
                 <a href="https://github.com/inndiaass/ApiPractica.git" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span data-es="Ver en GitHub" data-en="View on GitHub">Ver en GitHub</span></a>
+
+            </div>
+
+            <div class="proj-card">
+
+                <h3 class="tt" data-es="Gestión de Empleados MAUI" data-en="Employees MAUI App">Gestión de Empleados MAUI</h3>
+
+                <p class="tds" data-es="Aplicación móvil en .NET MAUI para la gestión de empleados y departamentos." data-en="Mobile app built with .NET MAUI for managing employees and departments.">Aplicación móvil en .NET MAUI para la gestión de empleados y departamentos.</p>
+
+                <div class="ptags"><span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" alt=".NET"> .NET MAUI</span><span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#"> C#</span></div>
+
+                <a href="https://github.com/inndiaass/EmpleadosMaui" target="_blank" rel="noopener" class="pgl"><i class="fab fa-github"></i><span data-es="Ver en GitHub" data-en="View on GitHub">Ver en GitHub</span></a>
 
             </div>
 
@@ -607,6 +680,19 @@
 
 
 <script>
+
+// ===== Custom Cursor =====
+(function(){
+    var cur = document.getElementById('cursor');
+    document.addEventListener('mousemove', function(e){
+        cur.style.left = e.clientX + 'px';
+        cur.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button, [style*="cursor"]').forEach(function(el){
+        el.addEventListener('mouseenter', function(){ cur.classList.add('hover'); });
+        el.addEventListener('mouseleave', function(){ cur.classList.remove('hover'); });
+    });
+})();
 
 // ===== Language Toggle Logic =====
 
