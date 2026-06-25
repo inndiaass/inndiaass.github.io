@@ -19,7 +19,7 @@
             --grad:linear-gradient(135deg,#e07b39,#ffaa70);
             --shd:0 8px 30px rgba(0,0,0,0.4);
             --nav:rgba(0,0,0,.35);
---nav2:rgba(0,0,0,.85);
+            --nav2:rgba(0,0,0,.85);
         }
         .light{
             --bg:#f4f5fb;--bg2:#ecedf5;--card:#ffffff;
@@ -55,44 +55,79 @@
             background: var(--ac2);
         }
 
-        html{scroll-behavior:smooth;scroll-padding-top:80px}
+        html{scroll-behavior:smooth;scroll-padding-top:100px}
         body{font-family:'Sora',sans-serif;background:#000;color:var(--t1);line-height:1.7;overflow-x:hidden;transition:background .4s,color .4s}
         a{text-decoration:none;color:inherit;transition:all .3s}
+        
         #bgCanvas{
-    position:fixed;
-    inset:0;
-    z-index:0;
-    pointer-events:none;
-    filter: blur(0.4px);
-    opacity: .9;
-}
+            position:fixed;
+            inset:0;
+            z-index:0;
+            pointer-events:none;
+            filter: blur(0.4px);
+            opacity: .9;
+        }
         .bg-glow{
-    position:fixed;
-    inset:0;
-    z-index:0;
-    pointer-events:none;
+            position:fixed;
+            inset:0;
+            z-index:0;
+            pointer-events:none;
+            background:
+            radial-gradient(circle at 30% 40%, rgba(255,255,255,.06), transparent 35%),
+            radial-gradient(circle at 70% 60%, rgba(255,255,255,.04), transparent 40%);
+        }
 
-    background:
-    radial-gradient(circle at 30% 40%,
-    rgba(255,255,255,.06),
-    transparent 35%),
-
-    radial-gradient(circle at 70% 60%,
-    rgba(255,255,255,.04),
-    transparent 40%);
-}
-
-        .nav-c{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 2rem;background:var(--nav);backdrop-filter:blur(20px);border-bottom:1px solid var(--brd);transition:all .4s cubic-bezier(0.4,0,0.2,1)}
-        .nav-c.scrolled{background:transparent;border-bottom:1px solid transparent;backdrop-filter:blur(0px);pointer-events:none}
-        .nav-i{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-        .nav-b{
-    font-size:1.3rem;
-    font-weight:700;
-    color:white;
-}
-        .nav-c.scrolled .nav-b{opacity:0;transform:translateY(-10px)}
-
-        .nav-actions { display: flex; gap: 0.8rem; pointer-events: auto; }
+        /* ----- HEADER / NAVBAR REESTRUCTURADO Y CORREGIDO ----- */
+        .nav-c {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1.2rem 2rem;
+            background: var(--nav);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid transparent;
+            transition: all 0.4s ease;
+        }
+        .nav-c.scrolled {
+            padding: 0.8rem 2rem;
+            background: var(--nav2);
+            border-bottom: 1px solid var(--brd);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .nav-i {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-b {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--t1);
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--t2);
+            position: relative;
+        }
+        .nav-links a:hover {
+            color: var(--ac);
+        }
+        .nav-actions { 
+            display: flex; 
+            gap: 0.8rem; 
+        }
         .t-tog{background:var(--card);border:1px solid var(--brd2);color:var(--t1);width:44px;height:44px;border-radius:50%;cursor:pointer!important;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .3s;box-shadow:var(--shd)}
         .t-tog:hover{border-color:var(--ac);box-shadow:0 0 15px var(--glow)}
         .lang-btn { font-size: 0.85rem; font-weight: 700; font-family: 'Sora', sans-serif; }
@@ -106,38 +141,35 @@
 
         /* HERO - Split layout */
         .hero{
-    min-height:100vh;
-    background:transparent;
-}
+            min-height:100vh;
+            background:transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
         .hero-split{display:flex;align-items:center;gap:4rem;max-width:1100px;margin:0 auto;width:100%}
         .hero-left{flex:1;text-align:left;position:relative;z-index:1}
         .hero-right{flex:1;position:relative;z-index:1}
         .hero-t{
-    font-size:clamp(2.2rem,5vw,3.8rem);
-    font-weight:700;
-    margin-bottom:.5rem;
-    color:#ffffff;
-    text-shadow:0 0 30px rgba(255,255,255,.15);
-}
+            font-size:clamp(2.2rem,5vw,3.8rem);
+            font-weight:700;
+            margin-bottom:.5rem;
+            color:#ffffff;
+            text-shadow:0 0 30px rgba(255,255,255,.15);
+        }
         .hero::before{
-    content:"";
-    position:absolute;
-    width:700px;
-    height:700px;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    border-radius:50%;
-
-    background:radial-gradient(
-        circle,
-        rgba(255,255,255,.05) 0%,
-        rgba(255,255,255,.02) 30%,
-        transparent 70%
-    );
-
-    pointer-events:none;
-}
+            content:"";
+            position:absolute;
+            width:700px;
+            height:700px;
+            left:50%;
+            top:50%;
+            transform:translate(-50%,-50%);
+            border-radius:50%;
+            background:radial-gradient(circle, rgba(255,255,255,.05) 0%, rgba(255,255,255,.02) 30%, transparent 70%);
+            pointer-events:none;
+        }
         .hero-s{font-size:1.1rem;color:var(--t2);margin-bottom:2rem;font-weight:300;letter-spacing:2px;text-transform:uppercase;animation:fu 1s ease .4s both}
         .hero-a{display:flex;gap:1rem;flex-wrap:wrap;animation:fu 1s ease .6s both}
         @keyframes fu{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
@@ -166,7 +198,6 @@
         .tl-item{position:relative;padding-left:0;padding-bottom:2rem}
         .tl-item:last-child{padding-bottom:0}
         .tl-dot{position:absolute;left:-27px;top:50%;transform:translateY(-50%);width:14px;height:14px;border-radius:50%;background:var(--ac);border:3px solid var(--bg);box-shadow:0 0 15px var(--glow);z-index:2;transition: transform .3s ease, box-shadow .3s ease;}
-        @keyframes tl-ping {0%{transform:translateY(-50%) scale(1);opacity:1;}70%{transform:translateY(-50%) scale(2.5);opacity:0;}100%{transform:translateY(-50%) scale(1);opacity:0;}}
         .tl-dot::after{content:'';position:absolute;inset:-4px;border-radius:50%;background:var(--ac);opacity:0;transition: opacity .3s;}
         .tl-item:hover .tl-dot{transform:translateY(-50%) scale(1.3);box-shadow:0 0 0 0 var(--ac),0 0 20px var(--glow);animation:pulse-ring .9s ease-out infinite;}
         @keyframes pulse-ring{0%{box-shadow:0 0 0 0 rgba(224,123,57,0.7),0 0 20px var(--glow);}70%{box-shadow:0 0 0 10px rgba(224,123,57,0),0 0 20px var(--glow);}100%{box-shadow:0 0 0 0 rgba(224,123,57,0),0 0 20px var(--glow);}}
@@ -206,6 +237,8 @@
         .ft{padding:2rem;text-align:center;border-top:1px solid var(--brd);color:var(--t3);font-size:.85rem;position:relative;z-index:1}
 
         @media(max-width:768px){
+            .nav-links { display: none; } /* Ocultar enlaces de texto en móviles para evitar que colapse */
+            .nav-c { padding: 1rem; }
             .hero-split{flex-direction:column;gap:2.5rem}
             .hero-left{text-align:center}
             .hero-a{justify-content:center}
@@ -221,12 +254,20 @@
 <body>
 
 <canvas id="bgCanvas"></canvas>
-    <div class="bg-glow"></div>
+<div class="bg-glow"></div>
 <div id="cursor"></div>
 
 <nav class="nav-c" id="navbar">
     <div class="nav-i">
         <a href="#inicio" class="nav-b">Iván Indias</a>
+        
+        <ul class="nav-links">
+            <li><a href="#experiencia" data-es="Experiencia" data-en="Experience">Experiencia</a></li>
+            <li><a href="#estudios" data-es="Estudios" data-en="Education">Estudios</a></li>
+            <li><a href="#proyectos" data-es="Proyectos" data-en="Projects">Proyectos</a></li>
+            <li><a href="#habilidades" data-es="Habilidades" data-en="Skills">Habilidades</a></li>
+        </ul>
+
         <div class="nav-actions">
             <button class="t-tog lang-btn" id="langToggle" aria-label="Cambiar idioma">EN</button>
             <button class="t-tog" id="themeToggle" aria-label="Cambiar tema">
@@ -419,7 +460,6 @@
         }
     }
     checkTouch();
-    // Also handle hybrid devices that switch to touch
     window.addEventListener('touchstart', function(){
         document.body.classList.add('touch-device');
         document.getElementById('cursor').style.display = 'none';
@@ -434,7 +474,8 @@
         cur.style.left = e.clientX + 'px';
         cur.style.top = e.clientY + 'px';
     });
-    document.querySelectorAll('a, button, [style*="cursor"]').forEach(function(el){
+    // Añadidos los selectores del navbar para el efecto hover del cursor personalizado
+    document.querySelectorAll('a, button, .nav-links a, [style*="cursor"]').forEach(function(el){
         el.addEventListener('mouseenter', function(){
             if(!document.body.classList.contains('touch-device')) cur.classList.add('hover');
         });
@@ -459,7 +500,6 @@ langToggle.addEventListener('click', () => {
     var he=document.getElementById('heroEmail');if(he){he.href=m;}
 })();
 
-// ===== Canvas Background =====
 // ===== Network Background =====
 (function () {
     const canvas = document.getElementById("bgCanvas");
@@ -487,17 +527,14 @@ langToggle.addEventListener('click', () => {
         reset() {
             this.x = Math.random() * width;
             this.y = Math.random() * height;
-
             this.vx = (Math.random() - 0.5) * 0.25;
             this.vy = (Math.random() - 0.5) * 0.25;
-
             this.radius = Math.random() * 2 + 1;
         }
 
         update() {
             this.x += this.vx;
             this.y += this.vy;
-
             if (this.x < 0 || this.x > width) this.vx *= -1;
             if (this.y < 0 || this.y > height) this.vy *= -1;
         }
@@ -523,11 +560,9 @@ langToggle.addEventListener('click', () => {
 
                 if (distance < MAX_DISTANCE) {
                     const opacity = (1 - distance / MAX_DISTANCE) * 0.35;
-
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
-
                     ctx.strokeStyle = `rgba(255,255,255,${opacity})`;
                     ctx.lineWidth = 0.6;
                     ctx.stroke();
@@ -538,48 +573,40 @@ langToggle.addEventListener('click', () => {
 
     function animate() {
         ctx.clearRect(0, 0, width, height);
-
         particles.forEach(p => {
             p.update();
             p.draw();
         });
-
         connectParticles();
-
         requestAnimationFrame(animate);
     }
 
     animate();
 })();
 
-// ===== Scroll logic =====
-window.addEventListener('scroll',function(){
-    var nav=document.getElementById('navbar');
-    var stBtn=document.getElementById('scrollTopBtn');
-    var circle=document.querySelector('.st-progress circle');
-    nav.classList.toggle('scrolled',window.scrollY>50);
-    if(window.scrollY>100){stBtn.classList.add('active')}else{stBtn.classList.remove('active')}
-    var total=document.body.scrollHeight-window.innerHeight;
-    var progress=window.scrollY/total;
-    circle.style.strokeDashoffset=151-(progress*151);
-});
-document.getElementById('scrollTopBtn').addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+// ===== Scroll logic (CORREGIDO Y COMPLETADO) =====
+window.addEventListener('scroll', function(){
+    var nav = document.getElementById('navbar');
+    var stBtn = document.getElementById('scrollTopBtn');
+    
+    // Al bajar más de 50px se compacta el header de manera limpia
+    if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
 
-// ===== Theme toggle =====
-document.getElementById('themeToggle').addEventListener('click',function(){
-    document.body.classList.toggle('light');
-    var ico=document.getElementById('themeIcon');
-    ico.classList.toggle('fa-sun');
-    ico.classList.toggle('fa-moon');
+    // Lógica para mostrar/ocultar el botón "Volver arriba"
+    if (window.scrollY > 300) {
+        stBtn.classList.add('active');
+    } else {
+        stBtn.classList.remove('active');
+    }
 });
 
-// ===== Reveal =====
-var obs=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}});
-},{threshold:0.1});
-document.querySelectorAll('.proj-card,.ec,.skill-box,.di,.cm,.tl-item').forEach(function(el){
-    el.style.opacity='0';el.style.transform='translateY(30px)';
-    el.style.transition='all .6s ease-out';obs.observe(el);
+// Listener para el botón "Volver arriba"
+document.getElementById('scrollTopBtn').addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 </script>
 </body>
