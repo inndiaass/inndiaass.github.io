@@ -18,7 +18,8 @@
             --brd:rgba(255,255,255,0.05);--brd2:rgba(255,255,255,0.08);
             --grad:linear-gradient(135deg,#e07b39,#ffaa70);
             --shd:0 8px 30px rgba(0,0,0,0.4);
-            --nav:rgba(17,24,39,0.8);--nav2:rgba(17,24,39,0.95);
+            --nav:rgba(0,0,0,.35);
+--nav2:rgba(0,0,0,.85);
         }
         .light{
             --bg:#f4f5fb;--bg2:#ecedf5;--card:#ffffff;
@@ -55,7 +56,7 @@
         }
 
         html{scroll-behavior:smooth;scroll-padding-top:80px}
-        body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;overflow-x:hidden;transition:background .4s,color .4s}
+        body{font-family:'Sora',sans-serif;background:#000;color:var(--t1);line-height:1.7;overflow-x:hidden;transition:background .4s,color .4s}
         a{text-decoration:none;color:inherit;transition:all .3s}
         #bgCanvas{
     position:fixed;
@@ -84,7 +85,11 @@
         .nav-c{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 2rem;background:var(--nav);backdrop-filter:blur(20px);border-bottom:1px solid var(--brd);transition:all .4s cubic-bezier(0.4,0,0.2,1)}
         .nav-c.scrolled{background:transparent;border-bottom:1px solid transparent;backdrop-filter:blur(0px);pointer-events:none}
         .nav-i{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-        .nav-b{font-size:1.3rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;transition:opacity .3s,transform .3s}
+        .nav-b{
+    font-size:1.3rem;
+    font-weight:700;
+    color:white;
+}
         .nav-c.scrolled .nav-b{opacity:0;transform:translateY(-10px)}
 
         .nav-actions { display: flex; gap: 0.8rem; pointer-events: auto; }
@@ -100,11 +105,39 @@
         .st-progress circle{fill:none;stroke:var(--ac2);stroke-width:3;stroke-dasharray:151;stroke-dashoffset:151;stroke-linecap:round;transition:stroke-dashoffset .1s linear}
 
         /* HERO - Split layout */
-        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:120px 2rem 60px;z-index:1}
+        .hero{
+    min-height:100vh;
+    background:transparent;
+}
         .hero-split{display:flex;align-items:center;gap:4rem;max-width:1100px;margin:0 auto;width:100%}
         .hero-left{flex:1;text-align:left;position:relative;z-index:1}
         .hero-right{flex:1;position:relative;z-index:1}
-        .hero-t{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;margin-bottom:.5rem;background:linear-gradient(135deg,var(--t1),var(--ac2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fu 1s ease .2s both}
+        .hero-t{
+    font-size:clamp(2.2rem,5vw,3.8rem);
+    font-weight:700;
+    margin-bottom:.5rem;
+    color:#ffffff;
+    text-shadow:0 0 30px rgba(255,255,255,.15);
+}
+        .hero::before{
+    content:"";
+    position:absolute;
+    width:700px;
+    height:700px;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+
+    background:radial-gradient(
+        circle,
+        rgba(255,255,255,.05) 0%,
+        rgba(255,255,255,.02) 30%,
+        transparent 70%
+    );
+
+    pointer-events:none;
+}
         .hero-s{font-size:1.1rem;color:var(--t2);margin-bottom:2rem;font-weight:300;letter-spacing:2px;text-transform:uppercase;animation:fu 1s ease .4s both}
         .hero-a{display:flex;gap:1rem;flex-wrap:wrap;animation:fu 1s ease .6s both}
         @keyframes fu{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
