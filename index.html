@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --bg:#111827;--bg2:#1a2035;--card:#1e2540;
+            --bg:#000000;
+            --bg2:#050505; --card:rgba(15,15,15,.85);
             --t1:#e8e8f0;--t2:#9a9ab5;--t3:#5e5e78;
             --ac:#e07b39;--ac2:#ffaa70;--glow:rgba(224,123,57,0.25);
             --brd:rgba(255,255,255,0.05);--brd2:rgba(255,255,255,0.08);
@@ -56,7 +57,29 @@
         html{scroll-behavior:smooth;scroll-padding-top:80px}
         body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--t1);line-height:1.7;overflow-x:hidden;transition:background .4s,color .4s}
         a{text-decoration:none;color:inherit;transition:all .3s}
-        #bgCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+        #bgCanvas{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    filter: blur(0.4px);
+    opacity: .9;
+}
+        .bg-glow{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+
+    background:
+    radial-gradient(circle at 30% 40%,
+    rgba(255,255,255,.06),
+    transparent 35%),
+
+    radial-gradient(circle at 70% 60%,
+    rgba(255,255,255,.04),
+    transparent 40%);
+}
 
         .nav-c{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 2rem;background:var(--nav);backdrop-filter:blur(20px);border-bottom:1px solid var(--brd);transition:all .4s cubic-bezier(0.4,0,0.2,1)}
         .nav-c.scrolled{background:transparent;border-bottom:1px solid transparent;backdrop-filter:blur(0px);pointer-events:none}
@@ -165,6 +188,7 @@
 <body>
 
 <canvas id="bgCanvas"></canvas>
+    <div class="bg-glow"></div>
 <div id="cursor"></div>
 
 <nav class="nav-c" id="navbar">
@@ -403,25 +427,96 @@ langToggle.addEventListener('click', () => {
 })();
 
 // ===== Canvas Background =====
-(function(){
-    var c=document.getElementById('bgCanvas'),x=c.getContext('2d');
-    var w,h,pts=[],N=50,maxD=140;
-    function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}
-    window.addEventListener('resize',resize);resize();
-    for(var i=0;i<N;i++){pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*2+1})}
-    function draw(){
-        x.clearRect(0,0,w,h);
-        var light=document.body.classList.contains('light');
-        var nCol=light?'rgba(224,123,57,0.12)':'rgba(224,123,57,0.25)';
-        var lCol=light?'rgba(224,123,57,0.04)':'rgba(224,123,57,0.07)';
-        for(var i=0;i<N;i++){var p=pts[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1}
-        x.strokeStyle=lCol;x.lineWidth=1;
-        for(var i=0;i<N;i++){for(var j=i+1;j<N;j++){var dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<maxD){x.globalAlpha=1-(d/maxD);x.beginPath();x.moveTo(pts[i].x,pts[i].y);x.lineTo(pts[j].x,pts[j].y);x.stroke()}}}
-        x.globalAlpha=1;x.fillStyle=nCol;
-        for(var i=0;i<N;i++){x.beginPath();x.arc(pts[i].x,pts[i].y,pts[i].r,0,Math.PI*2);x.fill()}
-        requestAnimationFrame(draw);
+// ===== Network Background =====
+(function () {
+    const canvas = document.getElementById("bgCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let width, height;
+    let particles = [];
+
+    const PARTICLE_COUNT = 120;
+    const MAX_DISTANCE = 140;
+
+    function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
     }
-    draw();
+
+    resize();
+    window.addEventListener("resize", resize);
+
+    class Particle {
+        constructor() {
+            this.reset();
+        }
+
+        reset() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+
+            this.vx = (Math.random() - 0.5) * 0.25;
+            this.vy = (Math.random() - 0.5) * 0.25;
+
+            this.radius = Math.random() * 2 + 1;
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(255,255,255,0.9)";
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push(new Particle());
+    }
+
+    function connectParticles() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < MAX_DISTANCE) {
+                    const opacity = (1 - distance / MAX_DISTANCE) * 0.35;
+
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+
+                    ctx.strokeStyle = `rgba(255,255,255,${opacity})`;
+                    ctx.lineWidth = 0.6;
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+
+        connectParticles();
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
 })();
 
 // ===== Scroll logic =====
